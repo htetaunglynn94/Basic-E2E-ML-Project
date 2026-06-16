@@ -10,7 +10,7 @@ HYPHEN_E_DOT = '-e .'
 def get_requirements(file_path:str) -> List[str]:
 
     '''
-    This function will return the list of requirements.
+    This function will return the list of requirements as string.
     '''
     requirements = []
     with open(file_path) as f:
@@ -22,6 +22,7 @@ def get_requirements(file_path:str) -> List[str]:
             
     return requirements
 
+# Define meta data about my package
 setup(
     name='e2emlproject', 
     version='0.0.1', 

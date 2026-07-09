@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Adding Bootstrap 5 so the button matches your beautiful home.html style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .welcome-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .btn-prediction {
+            background-color: #4f46e5;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 6px;
+            color: white;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .btn-prediction:hover {
+            background-color: #4338ca;
+            color: white;
+        }
+        /* Custom darkblue footer styling */
+        .footer-text {
+            color: #1e1b4b;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-card">
+        <h1 class="fw-bold mb-3" style="color: #1e1b4b;">Welcome to End-to-End Machine Learning Pipeline</h1>
+        <p class="fs-6 text-muted mb-4">In this project, frontend web-design is provided by Google Gemini.</p>
+        
+        <!-- Flask URL template link pointing directly to your predict_datapoint function -->
+        <div class="mb-2">
+            <a href="{{ url_for('predict_datapoint') }}" class="btn btn-prediction">Start Prediction</a>
+        </div>
+
+        <!-- Your new personalized footer sentence -->
+        <div class="mt-4 pt-2 border-top">
+            <p class="footer-text mb-0">This webapp is created by Htet Aung Lynn.</p>
+        </div>
+    </div>
+
+</body>
+</html>

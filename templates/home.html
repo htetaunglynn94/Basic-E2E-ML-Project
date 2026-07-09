@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Prediction</title>
+    <!-- Modern Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 15px;
+        }
+        .prediction-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            max-width: 750px;
+            width: 100%;
+        }
+        /* Custom Row Grid for features */
+        .form-grid-row {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .left-label-col {
+            width: 35%;
+            padding-right: 20px;
+        }
+        .right-input-col {
+            width: 65%;
+        }
+        .form-label {
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 0;
+            white-space: nowrap;
+        }
+        .form-control, .form-select {
+            border-radius: 6px;
+            padding: 10px 14px;
+            border: 1px solid #ced4da;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+        /* Centered button container - width reduced to shorten the button length */
+        .action-container {
+            max-width: 280px;
+            margin: 30px auto 0 auto;
+            text-align: center;
+        }
+        .btn-predict {
+            background-color: #4f46e5;
+            border: none;
+            padding: 10px;
+            font-weight: 600;
+            border-radius: 6px;
+            color: white;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+        .btn-predict:hover {
+            background-color: #4338ca;
+            color: white;
+        }
+        /* Result box wrapper to push it wider than the tiny button width */
+        .result-wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        /* Clean standalone look with explicit top spacing gap */
+        .result-box {
+            background-color: #eeebff;
+            border-top: 4px solid #4f46e5;
+            border-radius: 6px;
+            padding: 20px;
+            color: #312e81;
+            width: 100%;
+            margin-top: 25px; /* Added clean gap between button and result */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="prediction-card">
+            
+            <h1 class="text-center h3 mb-4 fw-bold" style="color: #1e1b4b;">Student Exam Performance Prediction</h1>
+            
+            
+            <form action="{{ url_for('predict_datapoint') }}" method="post">
+                <!-- Gender -->
+                <div class="form-grid-row">
+                    <div class="left-label-col">
+                        <label class="form-label">Gender</label>
+                    </div>
+                    <div class="right-input-col">
+                        <select class="form-select" name="gender" required>
+                            <option value="" selected disabled>Select your Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Race/Ethnicity -->
+                <div class="form-grid-row">
+                    <div class="left-label-col">
+                        <label class="form-label">Race or Ethnicity</label>
+                    </div>
+                    <div class="right-input-col">
+                        <select class="form-select" name="ethnicity" required>
+                            <option value="" selected disabled>Select Ethnicity</option>
+                            <option value="group A">Group A</option>
+                            <option value="group B">Group B</option>
+                            <option value="group C">Group C</option>
+                            <option value="group D">Group D</option>
+                            <option value="group E">Group E</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Parental Education -->
+                <div class="form-grid-row">
+                    <div class="left-label-col">
+                        <label class="form-label">Parental Education</label>
+                    </div>
+                    <div class="right-input-col">
+                        <select class="form-select" name="parental_level_of_education" required>
+                            <option value="" selected disabled>Select Parent Education</option>
+                            <option value="associate's degree">Associate's Degree</option>
+                            <option value="bachelor's degree">Bachelor's Degree</option>
+                            <option value="high school">High School</option>
+                            <option value="master's degree">Master's Degree</option>
+                            <option value="some college">Some College</option>
+                            <option value="some high school">Some High School</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Lunch -->
+                <div class="form-grid-row">
+                    <div class="left-label-col">
+                        <label class="form-label">Lunch Type</label>
+                    </div>
+                    <div class="right-input-col">
+                        <select class="form-select" name="lunch" required>
+                            <option value="" selected disabled>Select Lunch Type</option>
+                            <option value="free/reduced">Free / Reduced</option>
+                            <option value="standard">Standard</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Test Prep -->
+                <div class="form-grid-row">
+                    <div class="left-label-col">
+                        <label class="form-label">Test Prep Course</label>
+                    </div>
+                    <div class="right-input-col">
+                        <select class="form-select" name="test_preparation_course" required>
+                            <option value="" selected disabled>Select Test Course status</option>
+                            <option value="none">None</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Writing Score -->
+                <div class="form-grid-row">
+                    <div class="left-label-col">
+                        <label class="form-label">Writing Score (0-100)</label>
+                    </div>
+                    <div class="right-input-col">
+                        <input class="form-control" type="number" name="writing_score" placeholder="Ex: 85" min="0" max="100" required />
+                    </div>
+                </div>
+
+                <!-- Reading Score -->
+                <div class="form-grid-row">
+                    <div class="left-label-col">
+                        <label class="form-label">Reading Score (0-100)</label>
+                    </div>
+                    <div class="right-input-col">
+                        <input class="form-control" type="number" name="reading_score" placeholder="Ex: 78" min="0" max="100" required />
+                    </div>
+                </div>
+
+                <!-- Centered Action Area -->
+                <div class="action-container">
+                    <div class="d-grid">
+                        <input class="btn btn-predict" type="submit" value="Predict your Maths Score" />
+                    </div>
+                </div>
+                
+                <!-- Results Display -->
+                {% if results is not none %}
+                <div class="result-wrapper">
+                    <div class="result-box">
+                       <h2 class="h5 mb-0 fw-bold">
+                          The predicted Math Score is <span class="fs-3 d-block mt-1 text-primary">{{ "%.2f"|format(results)}}.</span>
+                       </h2>
+                    </div>
+                </div>
+                {% endif %}
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>

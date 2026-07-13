@@ -58,24 +58,43 @@
             border-color: #4f46e5;
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
         }
-        /* Centered button container - width reduced to shorten the button length */
-        .action-container {
-            max-width: 280px;
-            margin: 30px auto 0 auto;
+        /* Flexbox wrapper tightly holds the buttons based on content length without stretching or overlapping */
+        .action-flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Clean, reliable gap separation */
+            margin-top: 30px;
+        }
+        /* Base shared properties for actions matching index.html heights */
+        .btn-custom-action {
+            height: 50px;
+            padding: 0 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            border: none;
+            color: white;
+            transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
             text-align: center;
         }
         .btn-predict {
             background-color: #4f46e5;
-            border: none;
-            padding: 10px;
-            font-weight: 600;
-            border-radius: 6px;
-            color: white;
-            transition: background-color 0.2s;
-            width: 100%;
         }
         .btn-predict:hover {
             background-color: #4338ca;
+            color: white;
+        }
+        .btn-back {
+            background-color: #dc3545;
+            text-decoration: none;
+        }
+        .btn-back:hover {
+            background-color: #bb2d3b;
             color: white;
         }
         /* Result box wrapper to push it wider than the tiny button width */
@@ -101,7 +120,6 @@
         <div class="prediction-card">
             
             <h1 class="text-center h3 mb-4 fw-bold" style="color: #1e1b4b;">Student Exam Performance Prediction</h1>
-            
             
             <form action="{{ url_for('predict_datapoint') }}" method="post">
                 <!-- Gender -->
@@ -201,11 +219,10 @@
                     </div>
                 </div>
 
-                <!-- Centered Action Area -->
-                <div class="action-container">
-                    <div class="d-grid">
-                        <input class="btn btn-predict" type="submit" value="Predict your Maths Score" />
-                    </div>
+                <!-- Action buttons wrap text perfectly and leave a clean separation gap -->
+                <div class="action-flex-container">
+                    <a href="{{ url_for('home') }}" class="btn-custom-action btn-back">Back</a>
+                    <button class="btn-custom-action btn-predict" type="submit">Predict your Maths Score</button>
                 </div>
                 
                 <!-- Results Display -->

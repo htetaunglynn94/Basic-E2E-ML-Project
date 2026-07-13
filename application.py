@@ -10,7 +10,7 @@ app = application
 
 # Route for the home page
 @app.route("/")
-def index():
+def home():
     return render_template("index.html")
 
 

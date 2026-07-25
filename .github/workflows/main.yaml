@@ -96,7 +96,7 @@ jobs:
       - name: Stop and remove old container if running
         run: |
           docker stop mltest || true
-          docker image rm -f mltest || true
+          docker rm -f mltest || true
           
       - name: Run Docker Image to serve users
         run: docker run -d -p 8080:8080 --ipc="host" --name=mltest -e AWS_ACCESS_KEY_ID="${{secrets.AWS_ACCESS_KEY_ID}}" ${{secrets.AWS_ECR_LOGIN_URI}}/${{secrets.ECR_REPOSITORY_NAME}}:latest

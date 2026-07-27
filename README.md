@@ -74,6 +74,16 @@ Open your browser and navigate to http://127.0.0.1:8080.
 
 ---
 
+## Run with Docker (Docker Hub)
+If you prefer running the pre-built application container directly from Docker Hub without setting up a local Python environment:
+
+```Bash
+docker pull htetaunglynn/basic-e2e-ml-project:latest
+docker run -p 8080:8080 htetaunglynn/basic-e2e-ml-project:latest
+```
+
+---
+
 ## Deployment Configuration (Render)
 This application is deployed on Render using a Python web service configuration:
 
@@ -81,7 +91,7 @@ Build Command: `pip install -r requirements.txt`
 
 Start Command: `gunicorn application:application`
 
-## 📫 Contact
+## Contact
 
 If you have feedback, collaboration opportunities, or professional connections, feel free to reach out.
 

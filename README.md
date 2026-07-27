@@ -54,7 +54,7 @@ If you want to run the project locally on your machine:
 
 1. Clone the Repository
 ```Bash
-git clone [https://github.com/htetaunglynn94/Basic-E2E-ML-Project.git](https://github.com/htetaunglynn94/Basic-E2E-ML-Project.git)
+git clone https://github.com/htetaunglynn94/Basic-E2E-ML-Project.git
 cd Basic-E2E-ML-Project
 ```
 2. Create a Virtual Environment

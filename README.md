@@ -6,6 +6,11 @@ A complete, end-to-end Machine Learning web application designed to predict and 
 
 ---
 
+## 📸 Web App Preview
+![Web App Front Page](WebApp.png)
+
+---
+
 ## Project Overview
 The goal of this project is to take a machine learning pipeline from raw data exploration all the way to a functional, deployed production web application. 
 * **Machine Learning Pipeline:** Includes data ingestion, exploratory data analysis (EDA), data preprocessing/feature engineering, model training, and hyperparameter tuning.
